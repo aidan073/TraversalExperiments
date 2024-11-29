@@ -1,4 +1,4 @@
-package com.aidan.traversalexperiments.graph;
+package com.aidan.traversalexperiments.common;
 
 public class Edge {
     private Node fromNode; // node edge comes from

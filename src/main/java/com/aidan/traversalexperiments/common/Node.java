@@ -1,4 +1,4 @@
-package com.aidan.traversalexperiments.graph;
+package com.aidan.traversalexperiments.common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class Node {
     private String id; 
     private List<Edge> edges; // edges connected to this node
+    private List<Node> neighbors; // neighbors of this node (connected by edge)
     
     public Node(String id) {
         this.id = id;
@@ -18,5 +19,14 @@ public class Node {
     
     public void addEdge(Edge edge) {
         edges.add(edge);
+        neighbors.add(edge.getToNode());
+    }
+    
+    public List<Edge> getEdges(){
+    	return edges;
+    }
+    
+    public List<Node> getNeighbors(){
+    	return neighbors;
     }
 }
