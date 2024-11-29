@@ -45,7 +45,8 @@ public class AdjacencyMatrix {
             matrix[toIndex][fromIndex] = true;
         }
     }
-
+    
+    // not needed as Node stores neighbors, but could be useful for custom Node classes
     public Map<Node, Boolean> getNeighbors(Node node) {
         Integer nodeIndex = nodeIndexMap.get(node);
 
@@ -87,7 +88,7 @@ public class AdjacencyMatrix {
         this.matrix = newMatrix;
         this.capacity = newCapacity;
     }
-
+    // print readable visualization of matrix
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

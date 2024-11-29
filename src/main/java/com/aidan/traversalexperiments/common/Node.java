@@ -11,7 +11,8 @@ public class Node {
     public Node(String id) {
         this.id = id;
         this.edges = new ArrayList<>();
-    }
+        this.neighbors = new ArrayList<>();
+        }
     
     public String getId() {
         return id;

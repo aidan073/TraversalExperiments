@@ -6,14 +6,12 @@ import com.aidan.traversalexperiments.common.Node;
 public class BFS {
     public void traverse(Node start) {
         if(start == null) {
-            System.out.println("Start node is null. No traversal performed.");
+        	System.out.println("Start node is null. No traversal performed");
             return;
         }
 
         Set<Node> visited = new HashSet<>();
         Queue<Node> queue = new LinkedList<>();
-
-        // start BFS from the given node
         queue.add(start);
         visited.add(start);
 
@@ -33,9 +31,12 @@ public class BFS {
         }
     }
 
-    // Find a specific target node using BFS
+    // find target node
     public boolean search(Node start, String targetId) {
-        if(start == null) return false;
+        if(start == null) {
+            System.out.println("Start node is null. No search performed.");
+        	return false;
+        }
 
         Set<Node> visited = new HashSet<>();
         Queue<Node> queue = new LinkedList<>();
