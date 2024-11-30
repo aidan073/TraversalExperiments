@@ -1,12 +1,19 @@
 package com.aidan.traversalexperiments.graph;
 
+import java.util.List;
+
 import com.aidan.traversalexperiments.common.Edge;
 import com.aidan.traversalexperiments.common.Node;
 
 public class ConnectedGraph extends Graph{
-	private boolean directed;
+	private boolean directed = false;
+	
+	public ConnectedGraph() {
+		super();
+	}
 
 	public ConnectedGraph(boolean directed) {
+		super();
 		this.directed = directed;
 	}
 	
@@ -18,7 +25,7 @@ public class ConnectedGraph extends Graph{
 	@Override
 	public void addEdge(Node fromNode, Node toNode) {
 		fromNode.addEdge(new Edge(fromNode, toNode));
-		if(!directed) {
+		if(!this.directed) {
 			toNode.addEdge(new Edge(toNode, fromNode));	
 		}
 	}
@@ -30,14 +37,24 @@ public class ConnectedGraph extends Graph{
 	
 	@Override
 	public AdjacencyMatrix toAdjacencyMatrix() {
-		AdjacencyMatrix aMatrix = new AdjacencyMatrix(nodes.size());
-		for(Node node : nodes) {
-			aMatrix.addNode(node);
-			for(Node neighbor : node.getNeighbors()) {
-				aMatrix.addEdge(node, neighbor, directed);
-			}
-		}
-		return aMatrix;
+	    AdjacencyMatrix adjMatrix = new AdjacencyMatrix(getNodes().size());
+
+	    // add nodes
+	    for (Node node : getNodes()) {
+	        adjMatrix.addNode(node);
+	    }
+
+	    // add edges
+	    for (Node node : getNodes()) {
+	        for (Node neighbor : node.getNeighbors()) {
+	            adjMatrix.addEdge(node, neighbor, this.directed);
+	        }
+	    }
+	    return adjMatrix;
 	}
+	
+    public List<Node> getNodes() {
+        return nodes;
+    }
 
 }

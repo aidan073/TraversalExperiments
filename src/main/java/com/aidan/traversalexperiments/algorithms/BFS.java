@@ -32,7 +32,7 @@ public class BFS {
     }
 
     // find target node
-    public boolean search(Node start, String targetId) {
+    public boolean search(Node start, int targetId) {
         if(start == null) {
             System.out.println("Start node is null. No search performed.");
         	return false;

@@ -1,13 +1,16 @@
 package com.aidan.traversalexperiments;
 
-/**
- * Hello world!
- *
- */
+import com.aidan.traversalexperiments.common.*;
+import com.aidan.traversalexperiments.graph.*;
+import com.aidan.traversalexperiments.algorithms.*;
+import com.aidan.traversalexperiments.utils.*;
+
 public class App 
 {
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
-        System.out.println( "Hello World!" );
+    	ConnectedGraph cGraph = Generator.generateConnectedGraph(10);
+    	AdjacencyMatrix cGraphMatrix = cGraph.toAdjacencyMatrix();
+    	System.out.println(cGraphMatrix.toString());
     }
 }

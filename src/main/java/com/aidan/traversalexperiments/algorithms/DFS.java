@@ -30,7 +30,7 @@ public class DFS {
 	}
 	
 	// traversal specifically for search function
-	private boolean searchTraverse(Node curr, Set<Node> visited, String targetId) {
+	private boolean searchTraverse(Node curr, Set<Node> visited, int targetId) {
 		if(curr == null) {
 			return false;
 		}
@@ -49,7 +49,7 @@ public class DFS {
 	}
 	
 	// find target node
-	public boolean search(Node start, String targetId) {
+	public boolean search(Node start, int targetId) {
         if(start == null) {
             System.out.println("Start node is null. No search performed.");
         	return false;

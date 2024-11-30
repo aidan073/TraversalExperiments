@@ -5,9 +5,17 @@ import java.util.List;
 import com.aidan.traversalexperiments.common.Edge;
 import com.aidan.traversalexperiments.common.Node;
 
-import java.util.ArrayList;
-
 public class Tree extends Graph{
+	private boolean rooted = false;
+	
+	public Tree() {
+		super();
+	}
+	
+    public Tree(boolean rooted) {
+        super();
+        this.rooted = rooted;
+    }
 
 	@Override
 	public void addNode(Node node) {
@@ -16,9 +24,10 @@ public class Tree extends Graph{
 	
 	@Override
 	public void addEdge(Node fromNode, Node toNode) {
-		// add to both Nodes because undirected
 		fromNode.addEdge(new Edge(fromNode, toNode));
-		toNode.addEdge(new Edge(toNode, fromNode));
+		if(!this.rooted) {
+			toNode.addEdge(new Edge(toNode, fromNode));
+		}
 	}
 
 	@Override
@@ -28,9 +37,25 @@ public class Tree extends Graph{
 	
 	@Override
 	public AdjacencyMatrix toAdjacencyMatrix() {
-		// TODO Auto-generated method stub
-		return null;
+	    AdjacencyMatrix adjMatrix = new AdjacencyMatrix(getNodes().size());
+
+	    // add nodes
+	    for (Node node : getNodes()) {
+	        adjMatrix.addNode(node);
+	    }
+
+	    // add edges
+	    for (Node node : getNodes()) {
+	        for (Node neighbor : node.getNeighbors()) {
+	            adjMatrix.addEdge(node, neighbor, this.rooted);
+	        }
+	    }
+	    return adjMatrix;
 	}
+	
+    public List<Node> getNodes() {
+        return nodes;
+    }
 	// ensure graph is still a tree after changing structure
 //	public boolean ensureTree() {
 //		return false;

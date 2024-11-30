@@ -3,7 +3,7 @@ package com.aidan.traversalexperiments.common;
 public class Edge {
     private Node fromNode; // node edge comes from
     private Node toNode; // node edge leads into
-    private int weight; // optional edge weight
+    private int weight;
     
     public Edge(Node fromNode, Node toNode) {
         this.fromNode = fromNode;
