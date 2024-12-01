@@ -9,7 +9,7 @@ public class AdjacencyMatrix {
     private boolean[][] matrix;
     private Map<Node, Integer> nodeIndexMap; // map between nodes and their matrix idx
     private int capacity; // matrix capacity
-    private int size; // nodes in matrix
+    public int size; // nodes in matrix
 
     public AdjacencyMatrix(int initialCapacity) {
         this.capacity = initialCapacity;
@@ -88,6 +88,11 @@ public class AdjacencyMatrix {
         this.matrix = newMatrix;
         this.capacity = newCapacity;
     }
+    
+    public boolean[][] getMatrix(){
+    	return matrix;
+    }
+    
     // print readable visualization of matrix
     @Override
     public String toString() {

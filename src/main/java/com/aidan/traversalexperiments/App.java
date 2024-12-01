@@ -9,8 +9,14 @@ public class App
 {
     public static void main(String[] args)
     {
-    	ConnectedGraph cGraph = Generator.generateConnectedGraph(10);
+    	ConnectedGraph cGraph = Generator.generateConnectedGraph(100);
     	AdjacencyMatrix cGraphMatrix = cGraph.toAdjacencyMatrix();
     	System.out.println(cGraphMatrix.toString());
+    	
+    	Tree tree = Generator.generateBinaryRootedTree(9);
+    	AdjacencyMatrix treeMatrix = tree.toAdjacencyMatrix();
+    	System.out.println(treeMatrix.toString());
+    	
+    	Visualize.displayGraph(cGraphMatrix);
     }
 }

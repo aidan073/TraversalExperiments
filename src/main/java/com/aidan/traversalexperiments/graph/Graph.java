@@ -1,10 +1,11 @@
 package com.aidan.traversalexperiments.graph;
 
 import com.aidan.traversalexperiments.common.Node;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Graph {
+public abstract class Graph{
     protected List<Node> nodes;
 
     public Graph() {
