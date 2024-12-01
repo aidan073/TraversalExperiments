@@ -8,6 +8,7 @@ import com.aidan.traversalexperiments.common.Node;
 public class AdjacencyMatrix {
     private boolean[][] matrix;
     private Map<Node, Integer> nodeIndexMap; // map between nodes and their matrix idx
+    private Map<Integer, Node> idxNodeMap; // map from matrix to corresponding node.
     private int capacity; // matrix capacity
     public int size; // nodes in matrix
 
@@ -16,6 +17,7 @@ public class AdjacencyMatrix {
         this.size = 0;
         this.matrix = new boolean[capacity][capacity];
         this.nodeIndexMap = new HashMap<>();
+        this.idxNodeMap = new HashMap<>();
     }
 
     public void addNode(Node node) {
@@ -27,7 +29,7 @@ public class AdjacencyMatrix {
         if (size == capacity) {
             expandMatrix();
         }
-
+        idxNodeMap.put(size, node);
         nodeIndexMap.put(node, size++);
     }
 
@@ -91,6 +93,10 @@ public class AdjacencyMatrix {
     
     public boolean[][] getMatrix(){
     	return matrix;
+    }
+    
+    public Map<Integer, Node> getIdMap(){
+    	return idxNodeMap;
     }
     
     // print readable visualization of matrix

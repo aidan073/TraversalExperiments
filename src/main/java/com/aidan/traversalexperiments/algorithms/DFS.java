@@ -3,34 +3,65 @@ package com.aidan.traversalexperiments.algorithms;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.graphstream.graph.Graph;
+
 import com.aidan.traversalexperiments.common.Node;
 
 public class DFS {
-	public void traverse(Node start) {
+	public static void traverse(Node start) {
+		traverse(start, null);
+	}
+	public static void traverse(Node start, Graph graph) {
 		if(start == null) {
 			System.out.println("Start node is null. No traversal performed");
 			return;
 		}
 		Set<Node> visited = new HashSet<>();
 		System.out.println("DFS Traversal:");
-		recursiveTraverse(start, visited);
+		long startTime = System.nanoTime();
+		recursiveTraverse(start, visited, graph);
+		long endTime = System.nanoTime();
+		long elapsedTime = endTime - startTime;
+		if(graph == null) { // visualization skews, so only track time when not visualizing
+			System.out.println(elapsedTime);
+		}
 	}
 	
-	private void recursiveTraverse(Node curr, Set<Node> visited) {
+	private static void recursiveTraverse(Node curr, Set<Node> visited, Graph graph) {
 		if(curr == null) {
 			return;
 		}
 		System.out.println("Visited: " + curr);
 		if(visited.add(curr)) {
+			// update node appearance to visited, if graph is supplied
+			if(graph != null) {
+				graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "visited"); // change node appearance
+		        try {
+		            Thread.sleep(2000);
+		        } catch (InterruptedException e) {
+		            System.out.println("Traversal interrupted.");
+		            Thread.currentThread().interrupt();
+		        }
+			}
 			for(Node neighbor : curr.getNeighbors()) {
-				recursiveTraverse(neighbor, visited);
+				recursiveTraverse(neighbor, visited, graph);
 			}
 		}
 		return;
 	}
 	
+	// find target node
+	public static boolean search(Node start, int targetId) {
+        if(start == null) {
+            System.out.println("Start node is null. No search performed.");
+        	return false;
+        }
+        Set<Node> visited = new HashSet<>();
+        return searchTraverse(start, visited, targetId);
+	}
+	
 	// traversal specifically for search function
-	private boolean searchTraverse(Node curr, Set<Node> visited, int targetId) {
+	private static boolean searchTraverse(Node curr, Set<Node> visited, int targetId) {
 		if(curr == null) {
 			return false;
 		}
@@ -46,15 +77,5 @@ public class DFS {
 		}
 		return false;
 		
-	}
-	
-	// find target node
-	public boolean search(Node start, int targetId) {
-        if(start == null) {
-            System.out.println("Start node is null. No search performed.");
-        	return false;
-        }
-        Set<Node> visited = new HashSet<>();
-        return searchTraverse(start, visited, targetId);
 	}
 }
