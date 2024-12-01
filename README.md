@@ -1,7 +1,7 @@
-**WIP**
-This repo needs significant work, including:
-Proper handling of conversion to GraphStream Graph (currently ineffecient)
-Compatabiltiy with command line args
+**WIP**  
+This repo needs significant work, including:  
+- Proper handling of conversion to GraphStream Graph (currently ineffecient)
+- Compatabiltiy with command line args
 
 # TraversalExperiments  
 This repo houses experiments pertaining to graph traversal. Visualization is achieved using GraphStream.
