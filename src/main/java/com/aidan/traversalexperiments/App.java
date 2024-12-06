@@ -11,18 +11,23 @@ public class App
 {
     public static void main(String[] args)
     {
-    	ConnectedGraph cGraph = Generator.generateConnectedGraph(9);
+    	ConnectedGraph cGraph = Generator.generateConnectedGraph(15, 4);
     	AdjacencyMatrix cGraphMatrix = cGraph.toAdjacencyMatrix();
-    	System.out.println(cGraphMatrix.toString());
+    	Graph simplecGraph = Visualize.toSingleGraph(cGraphMatrix, "cGraph");
+//    	DFS.search(cGraph.getNodes().getFirst(), cGraph.getNodes().getLast().getId(), simplecGraph);
+    	BFS.search(cGraph.getNodes().getFirst(), cGraph.getNodes().get(10).getId(), simplecGraph);
+//    	System.out.println(cGraphMatrix.toString());    	
     	
-    	Tree tree = Generator.generateBinaryRootedTree(9);
-    	AdjacencyMatrix treeMatrix = tree.toAdjacencyMatrix();
-    	System.out.println(treeMatrix.toString());
+//    	Tree tree = Generator.generateBinaryTree(50);
+//    	AdjacencyMatrix treeMatrix = tree.toAdjacencyMatrix();
+////    	System.out.println(treeMatrix.toString());
+//    	Graph simpleTree = Visualize.toSingleGraph(treeMatrix, "Tree");
+//    	Visualize.displayGraph(simpleTree, true);
     	
 //    	Graph simpleRootedTree = Visualize.toSingleGraph(treeMatrix, "Rooted Tree");
 //   	Pipelines.speed();
 //    	Pipelines.speedEdges();
-    	Pipelines.speedNodes();
+//    	Pipelines.speedNodes();
 //    	Visualize.displayGraph(simpleRootedTree);
 //    	DFS.traverse(tree.getNodes().get(0), simpleRootedTree);
 //    	BFS.traverse(tree.getNodes().get(0), simpleRootedTree);

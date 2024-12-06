@@ -8,7 +8,7 @@ import com.aidan.traversalexperiments.graph.Tree;
 import com.aidan.traversalexperiments.graph.ConnectedGraph;
 
 public class Generator {
-	public static Tree generateBinaryRootedTree(int nodeCount) {
+	public static Tree generateBinaryTree(int nodeCount) {
 	    if(nodeCount <= 0){
 	        throw new IllegalArgumentException("Node count must be positive.");
 	    }

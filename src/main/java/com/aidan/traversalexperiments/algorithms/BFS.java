@@ -5,6 +5,7 @@ import java.util.*;
 import org.graphstream.graph.Graph;
 
 import com.aidan.traversalexperiments.common.Node;
+import com.aidan.traversalexperiments.utils.Visualize;
 
 public class BFS {
 	public static void traverse(Node start) {
@@ -21,11 +22,8 @@ public class BFS {
         queue.add(start);
         visited.add(start);
 
-        System.out.println("BFS Traversal:");
-
         while(!queue.isEmpty()) {
             Node curr = queue.poll();
-//            System.out.println("Visited: " + curr);
             // update node appearance to visited, if graph is supplied
  			if(graph != null) {
  				graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "visited"); // change node appearance
@@ -46,14 +44,19 @@ public class BFS {
             }
         }
     }
-
-    // find target node
     public static boolean search(Node start, int targetId) {
+    	return search(start, targetId, null);
+    }
+    // find target node
+    public static boolean search(Node start, int targetId, Graph graph) {
         if(start == null) {
             System.out.println("Start node is null. No search performed.");
         	return false;
         }
-
+        if(graph != null) {
+        	graph.getNode(String.valueOf(targetId)).setAttribute("ui.class", "target");
+        	Visualize.displayGraph(graph);
+        }
         Set<Node> visited = new HashSet<>();
         Queue<Node> queue = new LinkedList<>();
         queue.add(start);
@@ -62,9 +65,20 @@ public class BFS {
         while(!queue.isEmpty()) {
             Node curr = queue.poll();
             if(curr.getId() == targetId) {
+            	if(graph != null) {
+            		graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "found");
+            	}
                 return true;
             }
-
+            if(graph != null) {
+            	graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "visited");
+ 		        try {
+ 		            Thread.sleep(2000);
+ 		        } catch (InterruptedException e) {
+ 		            System.out.println("Traversal interrupted.");
+ 		            Thread.currentThread().interrupt();
+ 		        }
+            }
             for(Node neighbor : curr.getNeighbors()) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);

@@ -30,9 +30,16 @@ public class Visualize {
 	    }
 	    return graph;
 	}
-	public static void displayGraph(Graph graph) {	  
+	public static void displayGraph(Graph graph) {
+		displayGraph(graph, false);
+	}
+	public static void displayGraph(Graph graph, Boolean highlightFirstNode) {	  
 		System.setProperty("org.graphstream.ui", "swing");
-	    graph.setAttribute("ui.stylesheet", "node {fill-color: grey; size: 20px;} node.visited {fill-color: red;}");
+	    graph.setAttribute("ui.stylesheet", "node {fill-color: grey; size: 20px;} node.visited {fill-color: red;} "
+	    		+ "node.first {fill-color: blue;} node.target {fill-color: yellow;} node.found {fill-color: green;}");
+	    if(highlightFirstNode){
+	    	graph.getNode(0).setAttribute("ui.class", "first");
+	    }
 	    graph.display();
 	}
 }
