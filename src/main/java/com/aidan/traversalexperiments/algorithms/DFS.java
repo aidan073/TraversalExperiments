@@ -18,21 +18,15 @@ public class DFS {
 		}
 		Set<Node> visited = new HashSet<>();
 		System.out.println("DFS Traversal:");
-		long startTime = System.nanoTime();
 		recursiveTraverse(start, visited, graph);
-		long endTime = System.nanoTime();
-		long elapsedTime = endTime - startTime;
-		if(graph == null) { // visualization skews, so only track time when not visualizing
-			System.out.println(elapsedTime);
-		}
 	}
 	
 	private static void recursiveTraverse(Node curr, Set<Node> visited, Graph graph) {
 		if(curr == null) {
 			return;
 		}
-		System.out.println("Visited: " + curr);
 		if(visited.add(curr)) {
+//			System.out.println("Visited: " + curr);
 			// update node appearance to visited, if graph is supplied
 			if(graph != null) {
 				graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "visited"); // change node appearance

@@ -2,7 +2,6 @@ package com.aidan.traversalexperiments.utils;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Iterator;
 
 import com.aidan.traversalexperiments.common.*;
 import com.aidan.traversalexperiments.graph.Tree;
@@ -36,6 +35,9 @@ public class Generator {
 	    return tree;
 	}
 	public static ConnectedGraph generateConnectedGraph(int nodeCount) {
+		return generateConnectedGraph(nodeCount, -1);
+	}
+	public static ConnectedGraph generateConnectedGraph(int nodeCount, int maxNeighborCount) {
 	    if(nodeCount <= 0){
 	        throw new IllegalArgumentException("Node count must be positive.");
 	    }
@@ -49,17 +51,25 @@ public class Generator {
 	    Random rand = new Random();
 	    List<Node> nodes = cGraph.getNodes();
 	    for(int i = 0; i < nodes.size()-2; i++) {
-	    	cGraph.addEdge(nodes.get(i), nodes.get(i+1)); // add 1 edge for connectedness
-	    	// randomly add more edges
-	    	for(int j = i+2; j < nodes.size(); j++) {
-		    	if(rand.nextInt(2) == 1 && !nodes.get(j).getNeighbors().contains(nodes.get(i))) { // gen edge if rand and doesn't already exist
-		    		cGraph.addEdge(nodes.get(i), nodes.get(j));
+	    	cGraph.addEdge(nodes.get(i), nodes.get(i+1)); // add >=1 edge to each node for connectedness
+	    }
+	    cGraph.addEdge(nodes.get(0), nodes.get(nodes.size()-1));
+	    
+	    for(int i = 0; i < nodes.size()-2; i++) {
+	    	if(maxNeighborCount == -1) { // randomly add more edges
+		    	for(int j = i+2; j < nodes.size(); j++) {
+			    	if(rand.nextInt(2) == 1 && !nodes.get(j).getNeighbors().contains(nodes.get(i))) { // gen edge if rand and doesn't already exist
+			    		cGraph.addEdge(nodes.get(i), nodes.get(j));
+			    	}
 		    	}
 	    	}
-	    }
-	    // add connection from last node to first node (if doesn't exist) to ensure connectedness
-	    if(!nodes.get(0).getNeighbors().contains(nodes.get(nodes.size()-1))) {
-	    	cGraph.addEdge(nodes.get(0), nodes.get(nodes.size()-1));
+		    else { // add edges up to neighbor count
+		    	for(int j = 0; j < nodes.size(); j++) {
+		    		if(j != i && j != (i-1) && j != (i+1) && nodes.get(i).getNeighbors().size() < maxNeighborCount && nodes.get(j).getNeighbors().size() < maxNeighborCount) {
+		    			cGraph.addEdge(nodes.get(i), nodes.get(j));
+		    		}
+		    	}
+		    }
 	    }
 		return cGraph;
 	}

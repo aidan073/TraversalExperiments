@@ -31,7 +31,7 @@ public class Visualize {
 	    return graph;
 	}
 	public static void displayGraph(Graph graph) {	  
-	    System.setProperty("org.graphstream.ui", "swing");
+		System.setProperty("org.graphstream.ui", "swing");
 	    graph.setAttribute("ui.stylesheet", "node {fill-color: grey; size: 20px;} node.visited {fill-color: red;}");
 	    graph.display();
 	}

@@ -11,7 +11,6 @@ public class BFS {
 		traverse(start, null);
 	}
     public static void traverse(Node start, Graph graph) {
-    	long startTime = System.nanoTime();
         if(start == null) {
         	System.out.println("Start node is null. No traversal performed");
             return;
@@ -26,7 +25,7 @@ public class BFS {
 
         while(!queue.isEmpty()) {
             Node curr = queue.poll();
-            System.out.println("Visited: " + curr);
+//            System.out.println("Visited: " + curr);
             // update node appearance to visited, if graph is supplied
  			if(graph != null) {
  				graph.getNode(String.valueOf(curr.getId())).setAttribute("ui.class", "visited"); // change node appearance
@@ -45,11 +44,6 @@ public class BFS {
                     queue.add(neighbor);
                 }
             }
-        }
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
-        if(graph == null) { // visualization skews, so only track time when not visualizing
-        	System.out.println(elapsedTime);
         }
     }
 

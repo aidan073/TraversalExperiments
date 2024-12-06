@@ -11,7 +11,7 @@ public class App
 {
     public static void main(String[] args)
     {
-    	ConnectedGraph cGraph = Generator.generateConnectedGraph(10);
+    	ConnectedGraph cGraph = Generator.generateConnectedGraph(9);
     	AdjacencyMatrix cGraphMatrix = cGraph.toAdjacencyMatrix();
     	System.out.println(cGraphMatrix.toString());
     	
@@ -20,13 +20,16 @@ public class App
     	System.out.println(treeMatrix.toString());
     	
 //    	Graph simpleRootedTree = Visualize.toSingleGraph(treeMatrix, "Rooted Tree");
+//   	Pipelines.speed();
+//    	Pipelines.speedEdges();
+    	Pipelines.speedNodes();
 //    	Visualize.displayGraph(simpleRootedTree);
 //    	DFS.traverse(tree.getNodes().get(0), simpleRootedTree);
-    	//BFS.traverse(tree.getNodes().get(0), simpleRootedTree);
+//    	BFS.traverse(tree.getNodes().get(0), simpleRootedTree);
     	
-    	Graph simpleConnectedGraph = Visualize.toSingleGraph(cGraphMatrix, "Connected Graph");
-    	Visualize.displayGraph(simpleConnectedGraph);
-    	DFS.traverse(cGraph.getNodes().get(0), simpleConnectedGraph);
-    	//BFS.traverse(cGraph.getNodes().get(0), simpleConnectedGraph);
+//    	Graph simpleConnectedGraph = Visualize.toSingleGraph(cGraphMatrix, "Connected Graph");
+//    	Visualize.displayGraph(simpleConnectedGraph);
+//    	DFS.traverse(cGraph.getNodes().get(0), simpleConnectedGraph);
+//    	BFS.traverse(cGraph.getNodes().get(0), simpleConnectedGraph);
     }
 }
