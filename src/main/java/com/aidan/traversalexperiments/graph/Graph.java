@@ -16,6 +16,7 @@ public abstract class Graph{
     public abstract void addEdge(Node fromNode, Node toNode);
     public abstract boolean containsNode(Node node); // check if graph contains specified node
     public abstract AdjacencyMatrix toAdjacencyMatrix();
+    public abstract List<Node> getNodes();
 
     public int size() {
         return nodes.size();

@@ -4,6 +4,8 @@ import com.aidan.traversalexperiments.graph.*;
 import com.aidan.traversalexperiments.utils.*;
 import com.aidan.traversalexperiments.algorithms.*;
 
+import java.util.Random;
+
 import org.graphstream.graph.Graph;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -50,7 +52,7 @@ public class Pipelines {
 		System.out.println("cGraph BFS: " + elapsedTime);
 	}
 	// test the speed of BFS and DFS with respect to edge counts
-	public static void speedEdges() {
+	public static void speedEdgesTraverse() {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for(int i = 0; i < 2000; i+=100) {
 			ConnectedGraph cGraph = Generator.generateConnectedGraph(2000, i);
@@ -103,7 +105,7 @@ public class Pipelines {
         });
 	}
 	// test the speed of DFS and BFS with respect to node counts
-	public static void speedNodes() {
+	public static void speedNodesTraverse() {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for(int i = 1; i < 2000; i+=100) {
 			ConnectedGraph cGraph = Generator.generateConnectedGraph(i, 4);
@@ -202,6 +204,165 @@ public class Pipelines {
         // display graph with swing
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Binary Tree BFS Traversal Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart4));
+            frame.setVisible(true);
+        });
+	}
+	// test the speed of DFS and BFS search with respect to edge counts
+	public static void speedEdgesSearch() {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		for(int i = 0; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(2000, i);
+			long startTime = System.nanoTime();
+			DFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart = ChartFactory.createLineChart(
+                "Edge Count vs Elapsed Time",
+                "Number of Edges",
+                "Elapsed Time (nanoseconds)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Connected Graph DFS Search Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart));
+            frame.setVisible(true);
+        });
+        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
+		for(int i = 0; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(2000, i);
+			long startTime = System.nanoTime();
+			BFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset2.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart2 = ChartFactory.createLineChart(
+                "Edge Count vs Elapsed Time",
+                "Number of Edges",
+                "Elapsed Time (nanoseconds)",
+                dataset2,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Connected Graph BFS Search Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart2));
+            frame.setVisible(true);
+        });
+	}
+	// test the speed of DFS and BFS search with respect to node counts
+	public static void speedNodesSearch() {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		for(int i = 1; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(i, 4);
+			long startTime = System.nanoTime();
+			DFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart = ChartFactory.createLineChart(
+                "Node Count vs Elapsed Time",
+                "Number of Nodes",
+                "Elapsed Time (nanoseconds)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Connected Graph DFS Search Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart));
+            frame.setVisible(true);
+        });
+        
+        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
+		for(int i = 1; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(i, 4);
+			long startTime = System.nanoTime();
+			BFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset2.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart2 = ChartFactory.createLineChart(
+                "Node Count vs Elapsed Time",
+                "Number of Nodes",
+                "Elapsed Time (nanoseconds)",
+                dataset2,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Connected Graph BFS Search Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart2));
+            frame.setVisible(true);
+        });
+        
+		DefaultCategoryDataset dataset3 = new DefaultCategoryDataset();
+		for(int i = 1; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(i);
+			long startTime = System.nanoTime();
+			DFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset3.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart3 = ChartFactory.createLineChart(
+                "Node Count vs Elapsed Time",
+                "Number of Nodes",
+                "Elapsed Time (nanoseconds)",
+                dataset3,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Binary Tree DFS Search Speed");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 600);
+            frame.add(new ChartPanel(lineChart3));
+            frame.setVisible(true);
+        });
+        
+		DefaultCategoryDataset dataset4 = new DefaultCategoryDataset();
+		for(int i = 1; i < 2000; i+=100) {
+			ConnectedGraph cGraph = Generator.generateConnectedGraph(i);
+			long startTime = System.nanoTime();
+			BFS.search(cGraph.getNodes().getFirst(), 1+cGraph.size()/2);
+			long endTime = System.nanoTime();
+			long elapsedTime = endTime - startTime;
+	        dataset4.addValue(elapsedTime, "Elapsed Time", (Integer) i);
+		}
+        JFreeChart lineChart4 = ChartFactory.createLineChart(
+                "Node Count vs Elapsed Time",
+                "Number of Nodes",
+                "Elapsed Time (nanoseconds)",
+                dataset4,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        // display graph with swing
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Binary Tree BFS Search Speed");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1000, 600);
             frame.add(new ChartPanel(lineChart4));

@@ -52,7 +52,7 @@ public class ConnectedGraph extends Graph{
 	    }
 	    return adjMatrix;
 	}
-	
+	@Override
     public List<Node> getNodes() {
         return nodes;
     }
