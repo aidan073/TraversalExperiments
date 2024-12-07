@@ -135,7 +135,7 @@ public class App
         if (arguments.containsKey("pipeline")) {
             String pipeline = arguments.get("pipeline")[0];
             try {
-                Method method = App.class.getDeclaredMethod("Pipelines." + pipeline);
+                Method method = Pipelines.class.getDeclaredMethod(pipeline);
                 method.invoke(null);
             } catch (NoSuchMethodException e) {
                 System.err.println("Error: No pipeline named '" + pipeline + "' found.");
