@@ -5,7 +5,8 @@ This repo houses experiments pertaining to graph traversal. Visualization is ach
 
 # Setup  
 - This project uses maven 3.9.9
-- Clone this repo
+- Clone this repo  
+- cd to project root "traversalexperiments"
 - Install the below dependency to your local maven repo (needed for visualization), so it can be accessed in the pom.xml
 ```xml
 <dependency>
@@ -14,9 +15,10 @@ This repo houses experiments pertaining to graph traversal. Visualization is ach
     <version>2.0</version>
 </dependency>
 ```  
+- Run ```bash
+mvn clean install
+``` 
 # Usage  
-
-- cd to project root "traversalexperiments"
   
 **Example Usages:**  
 mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--traverse DFS connected-graph"  
