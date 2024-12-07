@@ -33,13 +33,13 @@ mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args=
 ```
   
 **Flags:**  
---traverse <method> <graph_type>  
+--traverse <traversal_method> <graph_type>  
   
---search <method> <graph_type>  
+--search <search_method> <graph_type>  
 
 --pipeline <pipeline_name>  
 
-**method options:**  
+**traversal_method/search_method options:**  
 DFS  
 BFS 
 
