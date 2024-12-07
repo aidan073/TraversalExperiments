@@ -15,9 +15,10 @@ This repo houses experiments pertaining to graph traversal. Visualization is ach
     <version>2.0</version>
 </dependency>
 ```  
-- Run ```bash
+- Run the following command:
+```bash
 mvn clean install
-``` 
+```
 # Usage  
   
 **Example Usages:**  
