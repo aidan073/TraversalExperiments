@@ -1,7 +1,4 @@
 **WIP**  
-This repo needs significant work, including:  
-- Proper handling of conversion to GraphStream Graph (currently ineffecient)
-- Compatabiltiy with command line args
 
 # TraversalExperiments  
 This repo houses experiments pertaining to graph traversal. Visualization is achieved using GraphStream.
@@ -16,3 +13,33 @@ This repo houses experiments pertaining to graph traversal. Visualization is ach
     <artifactId>gs-ui-swing</artifactId>
     <version>2.0</version>
 </dependency>
+```  
+# Usage  
+
+- cd to project root "traversalexperiments"
+  
+**Example Usages:**  
+mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--traverse DFS connected-graph"  
+mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--search BFS binary-tree"  
+mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--pipeline speedNodesTraverse"  
+  
+**Flags:**  
+--traverse <method> <graph_type>  
+  
+--search <method> <graph_type>  
+
+--pipeline <pipeline_name>  
+
+**method options:**  
+DFS  
+BFS 
+
+**graph_type options:**  
+binary-tree  
+connected-graph  
+
+**pipeline options:**  
+speedEdgesSearch  
+speedEdgesTraverse  
+speedNodesSearch  
+speedEdgesSearch
