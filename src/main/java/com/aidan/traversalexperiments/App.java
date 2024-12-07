@@ -56,7 +56,6 @@ public class App
                     return;
             }
         }
-        
         Scanner traversalScanner = new Scanner(System.in); 
         // traversal
         if (arguments.containsKey("traverse")) {
