@@ -22,9 +22,15 @@ mvn clean install
 # Usage  
   
 **Example Usages:**  
+```
 mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--traverse DFS connected-graph"  
-mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--search BFS binary-tree"  
+```
+```
+mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--search BFS binary-tree" 
+```
+``` 
 mvn exec:java -Dexec.mainClass="com.aidan.traversalexperiments.App" -Dexec.args="--pipeline speedNodesTraverse"  
+```
   
 **Flags:**  
 --traverse <method> <graph_type>  
